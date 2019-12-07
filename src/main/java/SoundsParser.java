@@ -84,12 +84,13 @@ public class SoundsParser {
         Elements imageBlock = element.select("div.radio_block__image");
         String radioImage = imageBlock.attr("style");
         radioImage = radioImage.replace("background-image: url(", "");
-        radioImage = radioImage.replace("small_", "");
         radioImage = radioImage.replace(")", "");
+        String smallRadioImage = baseUrl + radioImage;
+        radioImage = radioImage.replace("small_", "");
         radioImage = baseUrl + radioImage;
         String radioUrl = imageBlock.select("a").get(0).attr("href");
         String radioName = imageBlock.select("a").get(0).attr("data-name");
-        addSynchronized(result, new RadioDto(radioName, radioUrl, radioImage));
+        addSynchronized(result, new RadioDto(radioName, radioUrl, radioImage, smallRadioImage));
         log(radioImage);
     }
 
